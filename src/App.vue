@@ -21,12 +21,16 @@ const toggleTask = (taskId: string) => {
     task.completed = !task.completed;
   }
 };
+
+const removeTask = (taskId: string) => {
+  tasks.value = tasks.value.filter((task) => task.id !== taskId);
+};
 </script>
 
 <template>
   <main>
     <h1 class="text-4xl font-bold my-6 text-center">{{ message }}</h1>
     <TaskForm @add-task="addTask" />
-    <TaskList :tasks @toggle-task="toggleTask" />
+    <TaskList :tasks @toggle-task="toggleTask" @remove-task="removeTask" />
   </main>
 </template>
