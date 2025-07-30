@@ -29,7 +29,9 @@ const emit = defineEmits<{
               class="mr-2"
             />
           </label>
-          <CardTitle>{{ task.title }}</CardTitle>
+          <CardTitle :class="{ 'line-through': task.completed }">
+            {{ task.title }}
+          </CardTitle>
         </div>
       </CardHeader>
     </Card>
