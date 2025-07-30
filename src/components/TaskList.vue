@@ -24,7 +24,11 @@ const totalCompleted = computed(() => {
   <p v-else class="text-center text-xl font-semibold my-4">
     {{ totalCompleted }} / {{ props.tasks.length }} tasks completed
   </p>
-  <div class="flex flex-wrap mx-auto max-w-[90%]">
+  <TransitionGroup
+    name="list"
+    tag="div"
+    class="flex flex-wrap mx-auto max-w-[90%]"
+  >
     <Card v-for="task in props.tasks" :key="task.id" class="my-4 w-48 mx-2">
       <div class="flex items-center justify-between">
         <CardHeader>
@@ -54,5 +58,17 @@ const totalCompleted = computed(() => {
         </svg>
       </div>
     </Card>
-  </div>
+  </TransitionGroup>
 </template>
+
+<style>
+.list-enter-active,
+.list-leave-active {
+  transition: all 0.5s ease;
+}
+.list-enter-from,
+.list-leave-to {
+  opacity: 0;
+  transform: translateX(30px);
+}
+</style>
