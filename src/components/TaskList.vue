@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 import type { Task } from "@/types";
 import { Card, CardHeader, CardTitle } from "./ui/card";
+import { computed } from "vue";
 
 const props = defineProps<{
   tasks: Task[];
@@ -8,6 +9,10 @@ const props = defineProps<{
 const emit = defineEmits<{
   toggleTask: [taskId: string];
 }>();
+
+const totalCompleted = computed(() => {
+  return props.tasks.filter((task) => task.completed).length;
+});
 </script>
 
 <template>
@@ -15,7 +20,7 @@ const emit = defineEmits<{
     No tasks available. Please add some tasks.
   </p>
   <p v-else class="text-center text-xl font-semibold my-4">
-    0 / {{ props.tasks.length }} tasks completed
+    {{ totalCompleted }} / {{ props.tasks.length }} tasks completed
   </p>
   <div class="flex flex-wrap mx-auto max-w-[90%]">
     <Card v-for="task in props.tasks" :key="task.id" class="my-4 w-32 mx-2">
