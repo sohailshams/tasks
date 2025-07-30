@@ -12,14 +12,21 @@ const addTask = (newTask: string) => {
     title: newTask,
     completed: false,
   });
-  console.log(`New task added: ${newTask}`);
+};
+
+const toggleTask = (taskId: string) => {
+  const task = tasks.value.find((task) => task.id === taskId);
+
+  if (task) {
+    task.completed = !task.completed;
+  }
 };
 </script>
 
 <template>
-  <div>
+  <main>
     <h1 class="text-4xl font-bold my-6 text-center">{{ message }}</h1>
     <TaskForm @add-task="addTask" />
-    <TaskList :tasks />
-  </div>
+    <TaskList :tasks @toggle-task="toggleTask" />
+  </main>
 </template>
