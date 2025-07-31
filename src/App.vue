@@ -61,9 +61,9 @@ const setFilter = (filterValue: TaskFilter) => {
         {{ totalCompleted }} / {{ tasks.length }} tasks completed
       </p>
       <div v-if="tasks.length">
-        <Button filter="all" @set-filter="setFilter" />
-        <Button filter="todo" @set-filter="setFilter" />
-        <Button filter="done" @set-filter="setFilter" />
+        <Button :activeFilter="filter" filter="all" @set-filter="setFilter" />
+        <Button :activeFilter="filter" filter="todo" @set-filter="setFilter" />
+        <Button :activeFilter="filter" filter="done" @set-filter="setFilter" />
       </div>
     </div>
     <TaskList
