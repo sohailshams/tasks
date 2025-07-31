@@ -1,7 +1,6 @@
 <script lang="ts" setup>
 import type { Task } from "@/types";
 import { Card, CardHeader, CardTitle } from "./ui/card";
-import { computed } from "vue";
 
 const props = defineProps<{
   tasks: Task[];
@@ -11,19 +10,9 @@ const emits = defineEmits<{
   toggleTask: [taskId: string];
   removeTask: [taskId: string];
 }>();
-
-const totalCompleted = computed(() => {
-  return props.tasks.filter((task) => task.completed).length;
-});
 </script>
 
 <template>
-  <p v-if="!props.tasks.length" class="text-center text-xl font-bold my-4">
-    No tasks available. Please add some tasks.
-  </p>
-  <p v-else class="text-center text-xl font-semibold my-4">
-    {{ totalCompleted }} / {{ props.tasks.length }} tasks completed
-  </p>
   <TransitionGroup
     name="list"
     tag="div"
