@@ -51,7 +51,7 @@ const setFilter = (filterValue: TaskFilter) => {
 
 <template>
   <main>
-    <h1 class="text-4xl font-bold my-6 text-center">{{ message }}</h1>
+    <h1 class="text-2xl font-bold my-6 text-center">{{ message }}</h1>
     <TaskForm @add-task="addTask" />
     <div class="flex items-center justify-center space-x-4 mt-2">
       <p v-if="!tasks.length" class="text-center text-xl font-bold my-4">
